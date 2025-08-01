@@ -31,6 +31,11 @@ body {
 
 main {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px;
+  flex-wrap: wrap; 
 }
 
 header {
@@ -58,7 +63,7 @@ header a:hover {
 
 #subtitulo {
   font-family: 'Passion One', cursive;
-  margin: 0 0 0 30px;
+  margin-bottom: 10px;
   font-weight: bold;
   padding: 3px;
   color: var(--cor5);
@@ -68,45 +73,51 @@ header a:hover {
   content: "🎨 ";
 }
 
-article p {
+#eu {
   font-family: 'Passion One', cursive;
   font-size: 1.1em;
   font-weight: bold;
-  line-height: 1.5em;
-  text-align: justify;
-  max-width: 270px;
-  margin-left: 20px;
+  line-height: 1.4em;
+  text-align: left;
+  max-width: 450px;
+  margin-left: 10px;
   color: cornflowerblue;
 }
 
+#config {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 #minhafoto {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  position: absolute;
-  top: 25vh;
-  left: 60vw;
+  position: relative;
 }
 
 #habilidades {
-  position: absolute;
-  left: 61.5%;
-  top: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
-#rede,
-#contato {
+#rede, #contato {
   color: white;
 }
 
 #rede {
   text-align: center;
+  margin-top: 20px;
 }
 
 #contato {
-  margin-left: 15px;
+  margin: 20px;
 }
 
 #contato p {
@@ -119,4 +130,5 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 }
