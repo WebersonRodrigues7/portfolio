@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Passion+One:wght@400;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cor1: #010626;
+  --cor2: #022859;
+  --cor3: #034C8C;
+  --cor4: #2481A6;
+  --cor5: #F2CA50;
+}
+
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(to right, #000, var(--cor2));
+  color: var(--cor2);
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  flex: 1;
+}
+
+header {
+  background: linear-gradient(to right, rgba(0,0,0,0.95), var(--cor2));
+  height: 50px;
+}
+
+header ul {
+  text-align: right;
+  padding: 15px 15px 0 0;
+}
+
+header a {
+  font-weight: bold;
+  color: var(--cor3);
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px;
+  transition: color 0.5s;
+}
+
+header a:hover {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+#subtitulo {
+  font-family: 'Passion One', cursive;
+  margin: 0 0 0 30px;
+  font-weight: bold;
+  padding: 3px;
+  color: var(--cor5);
+}
+
+#subtitulo::before {
+  content: "🎨 ";
+}
+
+article p {
+  font-family: 'Passion One', cursive;
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 1.5em;
+  text-align: justify;
+  max-width: 270px;
+  margin-left: 20px;
+  color: cornflowerblue;
+}
+
+#minhafoto {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 25vh;
+  left: 60vw;
+}
+
+#habilidades {
+  position: absolute;
+  left: 61.5%;
+  top: 50%;
+}
+
+#rede,
+#contato {
+  color: white;
+}
+
+#rede {
+  text-align: center;
+}
+
+#contato {
+  margin-left: 15px;
+}
+
+#contato p {
+  margin-left: 15px;
+}
+
+footer {
+  margin-top: auto;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
