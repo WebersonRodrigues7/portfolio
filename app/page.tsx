@@ -177,7 +177,7 @@ export default function Home() {
             <textarea className={Style.mensagem} placeholder="MENSAGEM" />
           </div>
           <div className={Style.divBtn}>
-            <button onSubmit={() => o()}>Enviar</button>
+            <button>Enviar</button>
           </div>
         </form>
 
