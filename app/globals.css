@@ -1,26 +1,52 @@
-@import "tailwindcss";
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Passion+One:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cor1: #010626;
+  --cor2: #022859;
+  --cor3: #034C8C;
+  --cor4: #2481A6;
+  --cor5: #F2CA50;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: radial-gradient(ellipse at top left, #001a3a, #000 60%);
+  color: var(--cor2);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+h3 {
+  padding-top: 48px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75em;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75em;
+  font-family: 'JetBrains Mono', monospace;
+  display: block;
+  margin-top: 6px;
+}
+
+@keyframes cursor {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
 }

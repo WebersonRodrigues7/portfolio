@@ -1,65 +1,216 @@
-import Image from "next/image";
+"use client"
+
+
+import Image from "next/image"
+import { gsap } from "gsap"
+import Style from "./page.module.css"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { TextPlugin } from "gsap/TextPlugin"
+import { useRef, useEffect } from "react"
+
+
+gsap.registerPlugin(TextPlugin);
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Home() {
+
+  const progressRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
+  const myphotoRef = useRef<any>(null)
+  const digitRef = useRef<any>(null)
+
+
+
+
+  useEffect(() => {
+    const tl = gsap.timeline({repeat: -1});
+    tl.to(digitRef.current, { text: "< Olá Devs />", duration: 2, ease: "none" })
+    .to(digitRef.current, { text: {value: "", rtl: true}, duration: 1, ease: "none", delay: 0.3 })
+    .to(digitRef.current, { text: "Desenvolvedor Backend", duration: 2, ease: "none", delay: 0.3 })
+    .to(digitRef.current, { text: {value: "", rtl: true}, duration: 1, ease: "none", delay: 0.3 })
+
+    gsap.fromTo(myphotoRef.current, {
+      opacity: 0,
+      x: "40vw",
+    }, {
+      opacity: 1,
+      duration: 2,
+      x: "44vw",
+
+    })
+
+    gsap.to(progressRef.current, {
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      },
+      width: "100%",
+      ease: "none"
+    })
+  }, [])
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <div ref={progressRef} className={Style.progresso}>.</div>
+
+      <header ref={headerRef} className={Style.header}>
+        <ul className={Style.headerNav}>
+          <li><a href="#name">Home</a></li>
+          <li><a href="#habilidades">Ferramentas</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#contato">Fale Comigo</a></li>
+        </ul>
+      </header>
+
+      <main className={Style.main}>
+        <h1 className={Style.name}>Weberson Rodrigues</h1>
+        <h1 ref={digitRef} className={Style.digitando}></h1>
+
+        <div className={Style.imagemWrapper}>
+          <Image
+          ref={myphotoRef}
+            src="/imagens/buss.jfif"
+            alt="Minha foto"
+            className={Style.minhaFoto}
+            width={180}
+            height={180}
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        <section>
+          <h2 className={Style.subtitulo}>Sobre mim</h2>
+          <article>
+            <p className={Style.bio}>
+              Meu nome é Weberson, tenho 17 anos e sou desenvolvedor com foco em backend.
+              Tenho estudado programação a 1 ano e meio e usando tecnologias como TypeScript, JavaScript, NestJS, REST APIs e Git.
+              Atualmente aprendendo React e expandindo para o frontend.
+              Meu objetivo é atual e ser um desenvolvedor fullstack.
+            </p>
+          </article>
+        </section>
+
+        <h3>FERRAMENTAS</h3>
+        <article className={Style.habilidadesArticle}>
+          <div id="habilidades" className={Style.habilidades}>
+            <div className={Style.habilidadeItem}>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" alt="TypeScript" />
+              <span>TypeScript</span>
+            </div>
+            <div className={Style.habilidadeItem}>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" />
+              <span>JavaScript</span>
+            </div>
+            <div className={Style.habilidadeItem}>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" alt="NestJS" />
+              <span>NestJS</span>
+            </div>
+            <div className={Style.habilidadeItem}>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" />
+              <span>React</span>
+            </div>
+            <div className={Style.habilidadeItem}>
+              <Image src="/imagens/pythonpq.png" alt="Python" width={50} height={50} />
+              <span>Python</span>
+            </div>
+            <div className={Style.habilidadeItem}>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" />
+              <span>Git</span>
+            </div>
+            <div className={Style.habilidadeItem}>
+              <Image src="/imagens/html5pq.png" alt="HTML5" width={50} height={50} />
+              <span>HTML</span>
+            </div>
+            <div className={Style.habilidadeItem}>
+              <Image src="/imagens/css3pq.png" alt="CSS3" width={50} height={50} />
+              <span>CSS</span>
+            </div>
+          </div>
+        </article>
+
+        <h3>PROJETOS</h3>
+        <section id="projetos" className={Style.projetos}>
+
+          <div className={Style.projetoCard}>
+            <div className={Style.projetoInfo}>
+              <h3 className={Style.projetoTitulo}>API DE TAREFAS</h3>
+              <p className={Style.projetoDesc}>API criada para o gerenciamento de tarefas</p>
+              <div className={Style.projetoTechs}>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" title="NestJS" alt="NestJS" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" title="TypeScript" alt="TypeScript" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" title="MySQL" alt="MySQL" />
+              </div>
+            </div>
+            <a href="https://github.com/WebersonRodrigues7/api-tarefas" target="_blank" className={Style.projetoImgLink}>
+              <Image src="/imagens/api.png" alt="api-tarefa" className={Style.projetoImg} width={280} height={180} />
+            </a>
+          </div>
+
+          <div className={Style.projetoCard}>
+            <div className={Style.projetoInfo}>
+              <h3 className={Style.projetoTitulo}>API DE MATRÍCULAS</h3>
+              <p className={Style.projetoDesc}>API criada para gerenciar matrículas de curso</p>
+              <div className={Style.projetoTechs}>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" title="NestJS" alt="NestJS" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" title="TypeScript" alt="TypeScript" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" title="MySQL" alt="MySQL" />
+              </div>
+            </div>
+            <a href="https://github.com/WebersonRodrigues7/api-matriculas" target="_blank" className={Style.projetoImgLink}>
+              <img src="/imagens/api.png" alt="api-matriculas" className={Style.projetoImg} width={280} height={180} />
+            </a>
+          </div>
+
+        </section>
       </main>
-    </div>
-  );
+
+      <section id="contato" className={Style.contato}>
+        <p className={Style.contatoLabel}>// fale comigo</p>
+        <h2 className={Style.contatoTitulo}>Vamos conversar?</h2>
+        <p className={Style.contatoSub}>Estou disponível para oportunidades, freelas ou só trocar uma ideia.</p>
+        <div className={Style.contatoCards}>
+          <div className={Style.contatoItem}>
+            <span className={Style.contatoIcon}>✉</span>
+            <div>
+              <p className={Style.contatoItemTitulo}>Email</p>
+              <a href="mailto:webersongiovani@gmail.com">webersongiovani@gmail.com</a>
+            </div>
+          </div>
+          <div className={Style.contatoItem}>
+            <span className={Style.contatoIcon}>📱</span>
+            <div>
+              <p className={Style.contatoItemTitulo}>WhatsApp</p>
+              <a href="https://wa.me/5512981280132" target="_blank">(12) 98128-0132</a>
+            </div>
+          </div>
+          <div className={Style.contatoItem}>
+            <span className={Style.contatoIcon}>💼</span>
+            <div>
+              <p className={Style.contatoItemTitulo}>LinkedIn</p>
+              <a href="https://www.linkedin.com/in/weberson-giovani-226792377/" target="_blank">weberson-giovani</a>
+            </div>
+          </div>
+        </div>
+        <a href="#name" className={Style.btnVoltar}>↑ Voltar ao topo</a>
+      </section>
+
+      <footer className={Style.footer}>
+        <p className={Style.footerCopy}>
+          Desenvolvido por <span className={Style.footerName}>Weberson Rodrigues</span>
+        </p>
+        <div className={Style.footerLinks}>
+          <a href="https://github.com/WebersonRodrigues7" target="_blank" rel="noreferrer">
+            <Image src="/imagens/icone-github.png" alt="GitHub" width={24} height={24} />
+          </a>
+          <a href="https://instagram.com/rodriguezgvnn" target="_blank" rel="noreferrer">
+            <Image src="/imagens/icone-instagram.png" alt="Instagram" width={24} height={24} />
+          </a>
+          <a href="https://www.linkedin.com/in/weberson-giovani-226792377/" target="_blank" rel="noreferrer">
+            <Image src="/imagens/icone-linkedin.png" alt="LinkedIn" width={24} height={24} />
+          </a>
+        </div>
+      </footer>
+    </>
+  )
 }
