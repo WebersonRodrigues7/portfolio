@@ -1,12 +1,12 @@
 "use client"
-
-
+import z from "zod"
 import Image from "next/image"
 import { gsap } from "gsap"
 import Style from "./page.module.css"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { TextPlugin } from "gsap/TextPlugin"
 import { useRef, useEffect } from "react"
+import Cards from "./components/card"
 
 
 gsap.registerPlugin(TextPlugin);
@@ -23,11 +23,11 @@ export default function Home() {
 
 
   useEffect(() => {
-    const tl = gsap.timeline({repeat: -1});
+    const tl = gsap.timeline({ repeat: -1 });
     tl.to(digitRef.current, { text: "< Olá Devs />", duration: 2, ease: "none" })
-    .to(digitRef.current, { text: {value: "", rtl: true}, duration: 1, ease: "none", delay: 0.3 })
-    .to(digitRef.current, { text: "Desenvolvedor Backend", duration: 2, ease: "none", delay: 0.3 })
-    .to(digitRef.current, { text: {value: "", rtl: true}, duration: 1, ease: "none", delay: 0.3 })
+      .to(digitRef.current, { text: { value: "", rtl: true }, duration: 1, ease: "none", delay: 0.3 })
+      .to(digitRef.current, { text: "Desenvolvedor Backend", duration: 2, ease: "none", delay: 0.3 })
+      .to(digitRef.current, { text: { value: "", rtl: true }, duration: 1, ease: "none", delay: 0.3 })
 
     gsap.fromTo(myphotoRef.current, {
       opacity: 0,
@@ -70,7 +70,7 @@ export default function Home() {
 
         <div className={Style.imagemWrapper}>
           <Image
-          ref={myphotoRef}
+            ref={myphotoRef}
             src="/imagens/buss.jfif"
             alt="Minha foto"
             className={Style.minhaFoto}
@@ -131,36 +131,34 @@ export default function Home() {
 
         <h3>PROJETOS</h3>
         <section id="projetos" className={Style.projetos}>
+          <Cards
+            title="API DE TAREFAS"
+            description="API criada para o gerenciamento de tarefas"
+            src="/imagens/api.png"
+            alt="api-tarefa"
+            srcStack="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+            titleStack="MySQL"
+            gitHubUrl="https://github.com/WebersonRodrigues7/api-tarefas"
+          />
 
-          <div className={Style.projetoCard}>
-            <div className={Style.projetoInfo}>
-              <h3 className={Style.projetoTitulo}>API DE TAREFAS</h3>
-              <p className={Style.projetoDesc}>API criada para o gerenciamento de tarefas</p>
-              <div className={Style.projetoTechs}>
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" title="NestJS" alt="NestJS" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" title="TypeScript" alt="TypeScript" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" title="MySQL" alt="MySQL" />
-              </div>
-            </div>
-            <a href="https://github.com/WebersonRodrigues7/api-tarefas" target="_blank" className={Style.projetoImgLink}>
-              <Image src="/imagens/api.png" alt="api-tarefa" className={Style.projetoImg} width={280} height={180} />
-            </a>
-          </div>
-
-          <div className={Style.projetoCard}>
-            <div className={Style.projetoInfo}>
-              <h3 className={Style.projetoTitulo}>API DE MATRÍCULAS</h3>
-              <p className={Style.projetoDesc}>API criada para gerenciar matrículas de curso</p>
-              <div className={Style.projetoTechs}>
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg" title="NestJS" alt="NestJS" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" title="TypeScript" alt="TypeScript" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" title="MySQL" alt="MySQL" />
-              </div>
-            </div>
-            <a href="https://github.com/WebersonRodrigues7/api-matriculas" target="_blank" className={Style.projetoImgLink}>
-              <img src="/imagens/api.png" alt="api-matriculas" className={Style.projetoImg} width={280} height={180} />
-            </a>
-          </div>
+          <Cards
+            title="API DE MATRÍCULAS"
+            description="API criada para gerenciar matrículas de curso"
+            src="/imagens/api.png"
+            alt="api-matriculas"
+            srcStack="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+            titleStack="MySQL"
+            gitHubUrl="https://github.com/WebersonRodrigues7/api-matriculas"
+          />
+          <Cards
+            title="API BARBEARIA"
+            description="Gerenciamento de agendamentos para barbearia"
+            src="/imagens/api.png"
+            alt="api-barbearia"
+            srcStack="/imagens/postgresql.jpeg"
+            titleStack="postgres"
+            gitHubUrl="https://github.com/WebersonRodrigues7/sistema-barbearia"
+          />
 
         </section>
       </main>
@@ -169,29 +167,20 @@ export default function Home() {
         <p className={Style.contatoLabel}>// fale comigo</p>
         <h2 className={Style.contatoTitulo}>Vamos conversar?</h2>
         <p className={Style.contatoSub}>Estou disponível para oportunidades, freelas ou só trocar uma ideia.</p>
-        <div className={Style.contatoCards}>
-          <div className={Style.contatoItem}>
-            <span className={Style.contatoIcon}>✉</span>
-            <div>
-              <p className={Style.contatoItemTitulo}>Email</p>
-              <a href="mailto:webersongiovani@gmail.com">webersongiovani@gmail.com</a>
-            </div>
+
+        <form className={Style.form} action="">
+          <div className={Style.contactsform}>
+            <input type="text" placeholder="NOME" />
+            <input type="text" placeholder="EMAIL" />
           </div>
-          <div className={Style.contatoItem}>
-            <span className={Style.contatoIcon}>📱</span>
-            <div>
-              <p className={Style.contatoItemTitulo}>WhatsApp</p>
-              <a href="https://wa.me/5512981280132" target="_blank">(12) 98128-0132</a>
-            </div>
+          <div className={Style.divMensagem}>
+            <textarea className={Style.mensagem} placeholder="MENSAGEM" />
           </div>
-          <div className={Style.contatoItem}>
-            <span className={Style.contatoIcon}>💼</span>
-            <div>
-              <p className={Style.contatoItemTitulo}>LinkedIn</p>
-              <a href="https://www.linkedin.com/in/weberson-giovani-226792377/" target="_blank">weberson-giovani</a>
-            </div>
+          <div className={Style.divBtn}>
+            <button onSubmit={() => o()}>Enviar</button>
           </div>
-        </div>
+        </form>
+
         <a href="#name" className={Style.btnVoltar}>↑ Voltar ao topo</a>
       </section>
 
