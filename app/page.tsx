@@ -71,7 +71,7 @@ export default function Home() {
         <div className={Style.imagemWrapper}>
           <Image
             ref={myphotoRef}
-            src="/imagens/buss.jfif"
+            src="/imagens/buss.jpeg"
             alt="Minha foto"
             className={Style.minhaFoto}
             width={180}
