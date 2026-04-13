@@ -418,6 +418,11 @@
   border-radius: 3px;
 }
 
+.form .contactsform .inputAssunto {
+  padding: 10px;
+  width: 400px;
+}
+
 .form .contactsform input:focus {
   outline: 1px solid whitesmoke;
   
@@ -494,18 +499,19 @@
     padding: 6px 10px;
     letter-spacing: 1px;
   }
-  .imagemWrapper {
-  display: flex;
-  position: relative ;
-  left: -17%;
-  margin-top: 20px;
-}
+  
 
 .form .divBtn {
   display: flex;
   margin-left: 130px;
   justify-content: center;
 }
+
+.form .contactsform input {
+  padding: 4px;
+}
+
+
 
 
 

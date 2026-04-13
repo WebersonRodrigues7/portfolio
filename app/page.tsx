@@ -1,16 +1,27 @@
 "use client"
 import z from "zod"
-import Image from "next/image"
+import { useForm } from "react-hook-form"
 import { gsap } from "gsap"
 import Style from "./page.module.css"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { TextPlugin } from "gsap/TextPlugin"
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import Cards from "./components/card"
+import {zodResolver} from "@hookform/resolvers/zod"
+import Image from "next/image"
+
 
 
 gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(ScrollTrigger)
+
+const schema = z.object({
+  nome: z.string().min(3, "3 Caracteres minímos no nome!"),
+  email: z.email("Email inválido!"),
+  assunto: z.string().min(5, "5 Caracteres minímos!")
+})
+
+export type ContactSchema = z.infer<typeof schema>
 
 export default function Home() {
 
@@ -18,8 +29,27 @@ export default function Home() {
   const headerRef = useRef<HTMLElement>(null)
   const myphotoRef = useRef<any>(null)
   const digitRef = useRef<any>(null)
+  const [mensagem, setMensagem] = useState('')
 
 
+  
+  
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },} = useForm<ContactSchema>({
+      resolver: zodResolver(schema)
+    })
+    
+    async function onsubmit(data: ContactSchema) {
+      await fetch('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify({ ...data, mensagem}),
+        headers: { 'Content-Type': 'application/json'}
+      })
+      reset()
+    }
 
 
   useEffect(() => {
@@ -29,21 +59,14 @@ export default function Home() {
       .to(digitRef.current, { text: "Desenvolvedor Backend", duration: 2, ease: "none", delay: 0.3 })
       .to(digitRef.current, { text: { value: "", rtl: true }, duration: 1, ease: "none", delay: 0.3 })
 
-    gsap.fromTo(myphotoRef.current, {
+    gsap.from(myphotoRef.current, {
       opacity: 0,
-      x: "40vw",
-    }, {
-      opacity: 1,
-      duration: 2,
-      x: "44vw",
-
-    })
+      x: -200,
+      duration: 2
+    }) 
 
     gsap.to(progressRef.current, {
       scrollTrigger: {
-        trigger: document.body,
-        start: "top top",
-        end: "bottom bottom",
         scrub: true,
       },
       width: "100%",
@@ -68,7 +91,7 @@ export default function Home() {
         <h1 className={Style.name}>Weberson Rodrigues</h1>
         <h1 ref={digitRef} className={Style.digitando}></h1>
 
-        <div className={Style.imagemWrapper}>
+        
           <Image
             ref={myphotoRef}
             src="/imagens/buss.jpeg"
@@ -77,7 +100,7 @@ export default function Home() {
             width={180}
             height={180}
           />
-        </div>
+        
 
         <section>
           <h2 className={Style.subtitulo}>Sobre mim</h2>
@@ -168,16 +191,22 @@ export default function Home() {
         <h2 className={Style.contatoTitulo}>Vamos conversar?</h2>
         <p className={Style.contatoSub}>Estou disponível para oportunidades, freelas ou só trocar uma ideia.</p>
 
-        <form className={Style.form} action="">
+        <form className={Style.form} onSubmit={handleSubmit(onsubmit)}>
           <div className={Style.contactsform}>
-            <input type="text" placeholder="NOME" />
-            <input type="text" placeholder="EMAIL" />
+            <input {...register('nome')}  type="text" placeholder="NOME" />
+            <input {...register('email')} type="text" placeholder="EMAIL" />
+          </div>
+          <div className={Style.contactsform}>
+            <input className={Style.inputAssunto} {...register('assunto')}  type="text" placeholder="ASSUNTO" />
           </div>
           <div className={Style.divMensagem}>
-            <textarea className={Style.mensagem} placeholder="MENSAGEM" />
+            <textarea className={Style.mensagem} onChange={(e) => setMensagem(e.target.value)} placeholder="MENSAGEM" />
           </div>
+          {errors.nome && <p>{errors.nome.message}</p>}
+          {errors.email && <p>{errors.email.message}</p>}
           <div className={Style.divBtn}>
-            <button>Enviar</button>
+            <button type="submit">Enviar</button>
+
           </div>
         </form>
 
