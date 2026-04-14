@@ -185,6 +185,9 @@ export default function Home() {
 
         </section>
       </main>
+      <div>
+        
+      </div>
 
       <section id="contato" className={Style.contato}>
         <p className={Style.contatoLabel}>// fale comigo</p>

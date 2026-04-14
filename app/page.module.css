@@ -470,6 +470,22 @@
   cursor: pointer;
 }
 
+@media (max-width: 465px) {
+   .form .contactsform input {
+    padding: 3px;
+    width: 150px;
+   }
+
+  .form .contactsform .inputAssunto {
+    width: 320px;
+    padding: 3px;
+  }
+
+  
+
+
+}
+
 /* Media Queries */
 @media (max-width: 700px) {
   .name {
@@ -507,8 +523,13 @@
   justify-content: center;
 }
 
-.form .contactsform input {
-  padding: 4px;
+
+
+.mensagem {
+  
+  width: 400px;
+  height: 100px;
+  
 }
 
 
