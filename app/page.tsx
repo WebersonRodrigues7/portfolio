@@ -10,6 +10,7 @@ import Cards from "./components/card"
 import {zodResolver} from "@hookform/resolvers/zod"
 import Image from "next/image"
 import { FaWhatsapp } from "react-icons/fa"
+import Link from "next/link"
 
 
 
@@ -187,7 +188,9 @@ export default function Home() {
         </section>
       </main>
       <div className={Style.whats}>
-        <FaWhatsapp size={60} />
+        <Link  target='_blank' href={'https://wa.me/5512981280132?text=Ol%C3%A1%2C%20tenho%20interesse%20servi%C3%A7os%20de%20software'}>
+          <FaWhatsapp size={60} />
+        </Link>
       </div>
 
       <section id="contato" className={Style.contato}>
