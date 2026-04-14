@@ -9,6 +9,7 @@ import { useRef, useEffect, useState } from "react"
 import Cards from "./components/card"
 import {zodResolver} from "@hookform/resolvers/zod"
 import Image from "next/image"
+import { FaWhatsapp } from "react-icons/fa"
 
 
 
@@ -185,8 +186,8 @@ export default function Home() {
 
         </section>
       </main>
-      <div>
-        
+      <div className={Style.whats}>
+        <FaWhatsapp size={60} />
       </div>
 
       <section id="contato" className={Style.contato}>
@@ -203,7 +204,7 @@ export default function Home() {
             <input className={Style.inputAssunto} {...register('assunto')}  type="text" placeholder="ASSUNTO" />
           </div>
           <div className={Style.divMensagem}>
-            <textarea className={Style.mensagem} onChange={(e) => setMensagem(e.target.value)} placeholder="MENSAGEM" />
+            <textarea className={Style.mensagem}  onChange={(e) => setMensagem(e.target.value)} placeholder="MENSAGEM" />
           </div>
           {errors.nome && <p>{errors.nome.message}</p>}
           {errors.email && <p>{errors.email.message}</p>}

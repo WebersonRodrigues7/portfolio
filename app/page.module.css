@@ -122,7 +122,7 @@
   font-size: 1.4em;
   font-weight: bold;
   line-height: 1.4em;
-  text-align: justify;
+  text-align:justify;
   max-width: 600px;
   margin: 0 auto;
   color: cornflowerblue;
@@ -453,13 +453,13 @@
 }
 
 .mensagem {
+  resize: none;
   background-color: rgba(141, 140, 140, 0.15);
   border: 1px solid transparent;
   width: 100%;
   max-width: 420px;
   height: 120px;
   padding: 10px 12px;
-  resize: vertical;
   color: whitesmoke;
   border-radius: 6px;
   font-family: 'JetBrains Mono', monospace;
@@ -502,6 +502,34 @@
 .form button:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(26, 106, 255, 0.5);
+}
+
+.whats {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 997;
+  cursor: pointer;
+}
+
+.whats:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.6);
+}
+
+.whats svg {
+  color: white;
+  width: 28px;
+  height: 28px;
 }
 
 
